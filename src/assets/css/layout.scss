@@ -1,0 +1,8 @@
+@charset 'utf-8';
+@import './base.scss';
+
+@mixin card($pad:1rem) {
+  padding: $pad;
+  background-color: whitesmoke;
+  border-radius: 5px;
+}
