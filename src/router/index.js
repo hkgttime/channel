@@ -27,6 +27,14 @@ const routes = [
       {
         path: '/train',
         component: () => import('@/views/body/body/train')
+      },
+      {
+        path: '/login',
+        component: () => import('@/views/body/login/login.vue')
+      },
+      {
+        path: '/register',
+        component: () => import('@/views/body/login/register.vue')
       }
     ]
   }

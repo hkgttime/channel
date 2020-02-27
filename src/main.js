@@ -6,7 +6,7 @@ import axios from 'axios'
 import ElementUI from 'element-ui'
 
 Vue.config.productionTip = false
-Vue.property.$axios = axios
+Vue.prototype.$axios = axios
 Vue.use(ElementUI)
 new Vue({
   router,
