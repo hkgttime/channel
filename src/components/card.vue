@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script>
+<script scoped>
 export default {
   name: 'card',
   components: {},
@@ -26,10 +26,12 @@ export default {
   mounted () {}
 }
 </script>
-<style lang="scss" scoped>
-@import '@/assets/css/layout.css';
+<style lang="scss" >
 #card{
-  @include card;
+  padding: 16px;
+  box-shadow: 2px 2px 4px black inset;
+  border-radius: 5px;
+  margin: 34px 0;
   h2{
     font-size: 1.25rem;
     font-weight: 700;

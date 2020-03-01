@@ -4,6 +4,8 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import ElementUI from 'element-ui'
+import '@/mock/index.js'
+import '@/assets/js/interceptors.js'
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios

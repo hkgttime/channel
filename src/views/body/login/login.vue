@@ -7,14 +7,16 @@
       <ul>
         <li>
           <p>邮箱</p>
-          <input type="text" >
+          <input type="text" v-model="email">
+          <h6></h6>
         </li>
         <li>
           <p>密码</p>
-          <input type="password">
+          <input type="password" v-model="password" @keyup.enter="cli">
+          <h6></h6>
         </li>
         <li>
-          <button>登录</button>
+          <button @click="cli" >登录</button>
         </li>
         <li>
           <router-link tag="h4" to="/reg">
@@ -36,13 +38,45 @@ export default {
   props: {},
   data () {
     return {
+      password: '',
+      email: ''
     }
   },
-  watch: {},
+  watch: {
+  },
   computed: {},
-  methods: {},
+  methods: {
+    async cli () {
+      const reg = new RegExp('^[a-z0-9A-Z]+[- | a-z0-9A-Z . _]+@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-z]{2,}$')
+      if (this.email !== '' && this.password !== '') {
+        if (reg.test(this.email)) {
+          const res = await this.$axios.post('/user/login', { email: this.email, password: this.password })
+          if (res.data.code === 0) {
+            console.log(res)
+            this.$store.commit('setToken', res.data.data.tonken)
+            if (res.data.data.avatar) {
+              this.$store.commit('setHead', res.data.data.avatar)
+            }
+            const r = this.$route.query.redirect
+            if (r) {
+              this.$router.replace({ path: r })
+            } else {
+              this.$router.replace({ path: '/' })
+            }
+          } else {
+            this.$message(res.data.messge)
+          }
+        } else {
+          this.$message('邮箱格式不正确')
+        }
+      } else {
+        this.$message('不能为空')
+      }
+    }
+  },
   created () {},
-  mounted () {}
+  mounted () {
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -74,6 +108,9 @@ export default {
           background-color: inherit;
           box-shadow: 0px 0px 2px black;
           border-radius: 5px;
+          font-size: 14px;
+          height: 23px;
+          width: 243px;
           &:focus{
             box-shadow: 0px 0px 2px blue;
           }
@@ -82,6 +119,7 @@ export default {
           width: 100px;
           border-radius: 5px;
           color: rgba($color: #000000, $alpha: 0.5);
+          background-color: rgba($color: #000000, $alpha: 0.2);
           &:active{
             background-color: rgba($color: #000000, $alpha: 0.4);
           }

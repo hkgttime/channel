@@ -26,5 +26,6 @@ export default {
   @include card;
   background-color: rgba($color: #000000, $alpha: 0.2);
   text-align: center;
+  margin-top: 26px;
 }
 </style>

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '@/store/index.js'
 
 Vue.use(VueRouter)
 
@@ -30,11 +31,17 @@ const routes = [
       },
       {
         path: '/login',
-        component: () => import('@/views/body/login/login.vue')
+        component: () => import('@/views/body/login/login.vue'),
+        meta: {
+          onlive: true
+        }
       },
       {
         path: '/register',
-        component: () => import('@/views/body/login/register.vue')
+        component: () => import('@/views/body/login/register.vue'),
+        meta: {
+          onlive: true
+        }
       }
     ]
   }
@@ -52,6 +59,16 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.onlive) {
+    if (store.state.token) {
+      next({ path: '/' })
+    }
+    next()
+  }
+  next()
 })
 
 export default router
