@@ -14,30 +14,34 @@ const routes = [
         component: () => import('@/views/body/body/home')
       },
       {
-        path: '/discuss',
+        path: 'discuss',
         component: () => import('@/views/body/body/discuss')
       },
       {
-        path: '/item',
+        path: 'item',
         component: () => import('@/views/body/body/item')
       },
       {
-        path: '/record',
+        path: 'record',
         component: () => import('@/views/body/body/record')
       },
       {
-        path: '/train',
+        path: 'train',
         component: () => import('@/views/body/body/train')
       },
       {
-        path: '/login',
+        path: 'rank',
+        component: () => import('@/views/body/body/rank')
+      },
+      {
+        path: 'login',
         component: () => import('@/views/body/login/login.vue'),
         meta: {
           onlive: true
         }
       },
       {
-        path: '/register',
+        path: 'register',
         component: () => import('@/views/body/login/register.vue'),
         meta: {
           onlive: true
