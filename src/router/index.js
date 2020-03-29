@@ -46,6 +46,14 @@ const routes = [
         meta: {
           onlive: true
         }
+      },
+      {
+        path: 'person/:id/edit',
+        component: () => import('@/views/body/body/person/edit')
+      },
+      {
+        path: 'person/:id',
+        component: () => import('@/views/body/body/person')
       }
     ]
   }

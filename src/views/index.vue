@@ -21,6 +21,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 #views{
-  min-width: 1366px;
+  min-width: 1200px;
 }
 </style>

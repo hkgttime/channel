@@ -51,9 +51,12 @@ export default {
       if (this.email !== '' && this.password !== '') {
         if (reg.test(this.email)) {
           const res = await this.$axios.post('/user/login', { email: this.email, password: this.password })
+          // 登录成功
           if (res.data.code === 0) {
-            console.log(res)
+            // console.log(res)
             this.$store.commit('setToken', res.data.data.tonken)
+            this.$store.commit('setUuid', res.data.data.uuid)
+            this.$store.commit('setStatus', res.data.data.status)
             if (res.data.data.avatar) {
               this.$store.commit('setHead', res.data.data.avatar)
             }
